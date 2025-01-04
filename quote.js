@@ -17,7 +17,7 @@ const inputmaximumoccupancy = document.getElementById("maximumoccupancy.input");
 //
 const standard = document.getElementById("standard");
 const premium = document.getElementById("premium");
-const excelium = document.getElementById("excelium");
+const excelium = document.getElementById("excellium");
 const ElevatorRequired = document.getElementById("Elevator Required");
 const CostPerUnit = document.getElementById("Cost Per Unit");
 const InstillationFees = document.getElementById("Instillation Fees");
@@ -47,6 +47,9 @@ industrialButton.addEventListener("click", () => {
   divNumberElevator.style.display = "block";
   divfloors.style.display = "none";
 });
+//The industrial() function updates the value of the ElevatorRequired field with 
+// the value entered in the inputnumberelevators field. It is likely part of a 
+// process where the user inputs a value, and that value is then displayed or used elsewhere in the page.
 const industrial =() => {
  ElevatorRequired.value=inputnumberelevators.value
 
@@ -90,7 +93,11 @@ const residentialMath = () =>{
     ElevatorRequired.value=totalElevators
  }
 
-    
+    //This function Commercial() is designed to calculate
+    //  the total number of elevators required for a commercial building based on the maximum occupancy per floor,
+    //  the number of floors, and some assumptions (such as 200 people per elevator and 10 floors per elevator bank).
+    //  After performing the calculations,
+    //  it updates an element (likely a form field or display area) with the calculated total number of elevators.
 const  Commercial = () => {
 
 const maximumoccupancy=inputmaximumoccupancy.value
@@ -114,7 +121,8 @@ inputnumberelevators.addEventListener("input",()=> {
 industrial()
 
 });
-
+//Whenever the user types into or changes the value in the inputapartments field, the input event is triggered, and the residentialMath() function is called. The residentialMath() function likely performs some logic or calculation related to apartments, but 
+// the specific details would depend on how residentialMath() is implemented in your code.
 
 inputapartments.addEventListener("input",() => {
 
@@ -123,6 +131,8 @@ residentialMath ()
 
 
 });
+//Whenever the user types or interacts with the inputmaximumoccupancy element 
+// (presumably an input field), the event listener triggers the Commercial() function.
 
 inputmaximumoccupancy.addEventListener("input", ()=> {
 
@@ -132,7 +142,39 @@ inputmaximumoccupancy.addEventListener("input", ()=> {
 
 });
 inputnumberfloors.addEventListener("input", () => {
- // needs if statment
+    const numberOfFloors = inputnumberfloors.value;
+
+    // If the number of floors is greater than 10
+    if (residentialButton.checked ) {
+     residentialMath ()
+      // You can perform other actions, e.g., enable a certain input field or adjust calculations
+    } else  if (commercialButton.checked){ 
+        Commercial ()
+      console.log("");
+      // Other actions for when the number of floors is less than or equal to 10
+    }
+  });
+  
+  standard.addEventListener("input",() =>  {
 
 
-})
+const totalElevators=ElevatorRequired.value
+ // Calculate the base cost (end cost) for the elevators
+ const endCost = totalElevators* 8000;
+
+ // Calculate the installation fee (10% of end cost)
+ const standardFee = endCost * 0.10;
+  // Calculate the total cost including the installation fee
+  const finalPrice = endCost + standardFee;
+  CostPerUnit.value=endCost
+  InstillationFees.value=standardFee
+  Totalcost.value=finalPrice
+
+  })
+
+ 
+
+excelium.addEventListener("input",() =>  {
+
+
+  })
